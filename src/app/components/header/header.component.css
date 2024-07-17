@@ -1,0 +1,20 @@
+.mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+  }
+  
+  .toolbar-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .home-link {
+    margin-right: 10px; /* Adjust as needed */
+    text-decoration: none;
+  }
+  
+  .home-link mat-icon {
+    margin-left: 5px; /* Adjust as needed */
+  }
+  
