@@ -10,5 +10,7 @@ export class FiltersComponent {
 
 
 
-  
+  onShowCategory(category: string){
+    this.showCategory.emit(category);
+  }
 }
