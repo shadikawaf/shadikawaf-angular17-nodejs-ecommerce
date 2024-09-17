@@ -6,7 +6,8 @@ import { Component, EventEmitter, Output, output } from '@angular/core';
 })
 export class FiltersComponent {
   @Output() showCategory = new EventEmitter<string>();
-  categories = ['shoes', 'sports']
+  categories = ['Health & Wellness', 'Food & Dining', 'Sports Media', 'Events & Entertainment']
+
 
 
 

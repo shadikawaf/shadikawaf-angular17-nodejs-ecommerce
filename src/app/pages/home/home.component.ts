@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
+import { NotificationService } from '../../Services/NotificationService.service';
 
-
-interface RowsHeight {
-  [id: number]: number;
-}
-
-const ROWS_HEIGHT: RowsHeight = { 1: 400, 3: 335, 4: 350 };
 
 @Component({
   selector: 'app-home',
@@ -13,15 +8,20 @@ const ROWS_HEIGHT: RowsHeight = { 1: 400, 3: 335, 4: 350 };
 })
 export class HomeComponent {
   cols = 3;
-  rowHeight = ROWS_HEIGHT[this.cols];
+  rowHeight = 335;
   category: string | undefined;
+
+  constructor(private notificationService: NotificationService) {}
 
   onColumnsCountChange(colsNum: number): void {
     this.cols = colsNum;
-    this.rowHeight = ROWS_HEIGHT[this.cols];
+    this.rowHeight = colsNum === 1 ? 400 : 335;
   }
 
   onShowCategory(newCategory: string): void {
     this.category = newCategory;
+
+    // Emit a notification when the category changes
+    this.notificationService.sendNotification(`Category changed to: ${newCategory}`);
   }
 }

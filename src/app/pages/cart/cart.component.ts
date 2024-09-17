@@ -9,7 +9,7 @@ export class CartComponent implements OnInit {
 
 cart: Cart = { items: [{
 product: 'https://via.placeholder.com/150',
-name: 'snickxzxgxdsgfdsgfsfdfsfdgfgsgsgsgfsgsgssdgdsfers',
+name: 'snickers',
 price: 150,
 quantity: 1,
 id: 1,
