@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NotificationService } from '../../Services/NotificationService.service';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

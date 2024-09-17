@@ -1,26 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { NotificationService } from '../Services/NotificationService.service';
-
 
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.css']
 })
-export class NotificationComponent implements OnInit {
-  notification: string | null = null;
+export class NotificationComponent implements OnInit, OnDestroy {
+  notifications$: Observable<string>;
+  private destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private notificationService: NotificationService) {}
+  constructor(private notificationService: NotificationService) {
+    this.notifications$ = this.notificationService.getNotifications().pipe(
+      takeUntil(this.destroy$) // Automatically unsubscribe when the component is destroyed
+    );
+  }
 
-  ngOnInit(): void {
-    // Subscribe to the notification service to receive messages
-    this.notificationService.getNotifications().subscribe(message => {
-      this.notification = message;
+  ngOnInit(): void {}
 
-      // Clear the notification after 3 seconds
-      setTimeout(() => {
-        this.notification = null;
-      }, 3000);
-    });
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete(); // Clean up the Subject
   }
 }

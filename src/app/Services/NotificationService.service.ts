@@ -13,7 +13,7 @@ export class NotificationService {
 
     // This method allows components to emit notifications
     sendNotification(message: string) {
-        console.log("Sending notification: ", message); // Add this
+        console.log(`Sending notification: ${message}`);
         this.notificationSubject.next(message)
     }
 
